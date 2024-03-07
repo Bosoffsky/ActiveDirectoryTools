@@ -4,9 +4,9 @@ $root = "DC=$($dnsdomain[0]),DC=$($dnsdomain[1])"
 $ldap = New-Object System.DirectoryServices.DirectorySearcher
 $ldap.SearchRoot = New-Object System.DirectoryServices.DirectoryEntry("LDAP://$($env:LOGONSERVER.TrimStart('\\')).$($env:USERDNSDOMAIN):636/$($root)")
 $ldap.Filter = $ldapquery
-$ldap.PropertiesToLoad.Add('name')
-$ldap.PropertiesToLoad.Add('ms-mcs-admpwd')
-$ldap.PropertiesToLoad.Add('ms-mcs-admpwdexpirationtime')
+$ldap.PropertiesToLoad.Add('name') > $null
+$ldap.PropertiesToLoad.Add('ms-mcs-admpwd') > $null
+$ldap.PropertiesToLoad.Add('ms-mcs-admpwdexpirationtime') > $null
 $ldap.SearchScope = "Subtree"
 
 $ldap.FindAll().Properties | % {
